@@ -7,101 +7,70 @@
     <title>To do list</title>
 
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-
         .container {
-            width: 90%;
-            max-width: 300px;
-            margin: 20px auto;
+            height: 276px;
+            width: 300px;
+            display: inline-block;
+            /* margin-left: 200px; */
             border: 1px solid black;
-            padding: 20px;
+            padding: 70px;
+            padding-left: 90px;
             background: #0f0e0e;
             color: white;
-            font-size: 1.5em;
-            text-align: center;
+            font-size: xx-large;
+            margin-left: 167px;
+            margin-top: 83px;
         }
 
         #enter {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            font-size: 1em;
+            padding-top: 16px;
+            width: 200px;
+            margin-left: -20px;
         }
 
         #add {
-            width: 100%;
-            padding: 10px;
+            height: 39px;
             background: red;
             color: white;
-            font-size: 1em;
-            font-weight: bold;
-            cursor: pointer;
-            margin-bottom: 10px;
+            font-size: initial;
+            font-weight: 900;
+            display: inline-block;
+            width: 97px;
+            /* position: relative; */
+            padding-top: 10px;
         }
+
 
         #tasklist {
-            text-align: left;
-            list-style: none;
-            padding-left: 0;
+            text-decoration: unset;
+            text-transform: capitalize;
+            list-style: auto;
+            margin-left: -90px;
+            margin-top: 6px;
         }
 
-        #tasklist li {
-            padding: 10px;
-            background: #2c2c2c;
-            margin-bottom: 5px;
+        .remove{
+            border: 1px solid red;
             color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .remove {
-            background: red;
-            border: none;
-            color: white;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 15px;
-            }
-
-            #add {
-                font-size: 0.9em;
-                padding: 8px;
-            }
-
-            #enter {
-                font-size: 0.9em;
-                padding: 8px;
-            }
-
-            #tasklist li {
-                font-size: 0.9em;
-            }
+            margin-left: 20px;
+            cursor:pointer;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="main" style="display: flex; flex-direction: column;">
+    <div class="main" style="display: flex;">
         <div class="container">
             <h1>TO Do List</h1>
-            <input type="text" id="enter" placeholder="Enter task">
-            <button type="button" id="add">Add Task</button>
+            <input type="text" id="enter">
+            <button type="button" id="add">add task</button>
         </div>
-        <div class="container">
+        <div class="container" style="    margin-left: -3px;">
             <ul id="tasklist"></ul>
         </div>
-    </div>
 
+    </div>
     <script>
         document.getElementById('add').addEventListener('click', () => {
             const textt = document.getElementById('enter');
@@ -110,13 +79,16 @@
                 const li = document.createElement('li');
                 li.textContent = ntext;
 
-                const remove = document.createElement('button');
+                const remove = document.createElement('span');
                 remove.textContent = 'Remove';
                 remove.className = 'remove';
                 remove.addEventListener('click', (event) => {
                     li.remove();
                 });
                 li.appendChild(remove);
+                li.addEventListener('click', () => {
+                    li.classList.toggle('completed');
+                });
                 document.getElementById('tasklist').appendChild(li);
                 textt.value = '';
             }
