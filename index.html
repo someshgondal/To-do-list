@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list</title>
+
+    <style>
+        .container {
+            height: 276px;
+            width: 300px;
+            display: inline-block;
+            /* margin-left: 200px; */
+            border: 1px solid black;
+            padding: 70px;
+            padding-left: 90px;
+            background: #0f0e0e;
+            color: white;
+            font-size: xx-large;
+            margin-left: 167px;
+            margin-top: 83px;
+        }
+
+        #enter {
+            padding-top: 16px;
+            width: 200px;
+            margin-left: -20px;
+        }
+
+        #add {
+            height: 39px;
+            background: red;
+            color: white;
+            font-size: initial;
+            font-weight: 900;
+            display: inline-block;
+            width: 97px;
+            /* position: relative; */
+            padding-top: 10px;
+        }
+
+
+        #tasklist {
+            text-decoration: unset;
+            text-transform: capitalize;
+            list-style: auto;
+            margin-left: -90px;
+            margin-top: 6px;
+        }
+
+        .remove{
+            border: 1px solid red;
+            color: white;
+            margin-left: 20px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main" style="display: flex;">
+        <div class="container">
+            <h1>TO Do List</h1>
+            <input type="text" id="enter">
+            <button type="button" id="add">add task</button>
+        </div>
+        <div class="container" style="    margin-left: -3px;">
+            <ul id="tasklist"></ul>
+        </div>
+
+    </div>
+    <script>
+        document.getElementById('add').addEventListener('click', () => {
+            const textt = document.getElementById('enter');
+            const ntext = textt.value.trim();
+            if (ntext !== '') {
+                const li = document.createElement('li');
+                li.textContent = ntext;
+
+                const remove = document.createElement('span');
+                remove.textContent = 'Remove';
+                remove.className = 'remove';
+                remove.addEventListener('click', (event) => {
+                    li.remove();
+                });
+                li.appendChild(remove);
+                li.addEventListener('click', () => {
+                    li.classList.toggle('completed');
+                });
+                document.getElementById('tasklist').appendChild(li);
+                textt.value = '';
+            }
+        });
+    </script>
+</body>
+
+</html>
